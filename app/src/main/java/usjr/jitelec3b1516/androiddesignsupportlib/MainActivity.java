@@ -2,6 +2,7 @@ package usjr.jitelec3b1516.androiddesignsupportlib;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TabLayout            mTabLayout;
     private FloatingActionButton mFab;
 
     @Override
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setupToolbar();
         setupFab();
+        setupTabLayout();
     }
 
     @Override
@@ -57,6 +60,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setupFab() {
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(this);
+    }
+
+    private void setupTabLayout() {
+        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 4"));
     }
 
     @Override
