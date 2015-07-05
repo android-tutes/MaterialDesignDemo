@@ -6,6 +6,13 @@
     
     <string name="text_sample_snackbar">This is a sample Snackbar.</string>
     <string name="text_action">What\'s Up?</string>
+    <string name="toolbar">Toolbar</string>
+    <string name="fab">Floating Action Button</string>
+    <string name="snackbar">Snackbar</string>
+    <string name="tabs">TabLayout</string>
+    <string name="coordinatorLayout">CoordinatorLayout</string>
+    <string name="collapsingToolbarLayout">CollapsingToolbarLayout</string>
+    <string name="navigationView">NavigationView</string>
 
     <string name="long_text">Android 5.0 Lollipop was one of the most significant Android releases ever,
         in no small part due to the introduction of material design,

@@ -1,12 +1,13 @@
 package usjr.jitelec3b1516.androiddesignsupportlib;
 
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +15,8 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Toolbar mToolbar;
+    private DrawerLayout         mDrawerLayout;
+    private Toolbar              mToolbar;
     private FloatingActionButton mFab;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupNavigationView();
         setupToolbar();
         setupCollapsingToolbarLayout();
         setupFab();
@@ -37,17 +40,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setupNavigationView() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
     }
 
     private void setupToolbar() {
@@ -56,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Show menu icon
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setupCollapsingToolbarLayout() {
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mCollapsingToolbarLayout.setTitle(mToolbar.getTitle());
-
     }
 
     private void setupFab() {
