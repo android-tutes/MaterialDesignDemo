@@ -1,5 +1,6 @@
 package usjr.jitelec3b1516.androiddesignsupportlib;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -13,8 +14,9 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TabLayout            mTabLayout;
+    private Toolbar mToolbar;
     private FloatingActionButton mFab;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         setupToolbar();
+        setupCollapsingToolbarLayout();
         setupFab();
-        setupTabLayout();
     }
 
     @Override
@@ -49,26 +51,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         // Show menu icon
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
     }
 
+    private void setupCollapsingToolbarLayout() {
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mCollapsingToolbarLayout.setTitle(mToolbar.getTitle());
+
+    }
+
     private void setupFab() {
         mFab = (FloatingActionButton) findViewById(R.id.fab);
         mFab.setOnClickListener(this);
-    }
-
-    private void setupTabLayout() {
-        mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 1"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 2"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 3"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("Tab 4"));
     }
 
     @Override
