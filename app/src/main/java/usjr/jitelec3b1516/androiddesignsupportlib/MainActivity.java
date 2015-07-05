@@ -1,13 +1,18 @@
 package usjr.jitelec3b1516.androiddesignsupportlib;
 
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private FloatingActionButton mFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupToolbar();
+        setupFab();
     }
 
     @Override
@@ -46,5 +52,20 @@ public class MainActivity extends AppCompatActivity {
         // Show menu icon
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
+    }
+
+    private void setupFab() {
+        mFab = (FloatingActionButton) findViewById(R.id.fab);
+        mFab.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.fab) {
+            Snackbar.make(findViewById(R.id.rootLayout),
+                    R.string.text_sample_snackbar,
+                    Snackbar.LENGTH_LONG)
+                    .setAction(R.string.text_action, this).show();
+        }
     }
 }
