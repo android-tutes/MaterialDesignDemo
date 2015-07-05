@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.fab) {
-            Snackbar.make(findViewById(R.id.rootLayout),
+            Snackbar.make(findViewById(R.id.coordLayout),
                     R.string.text_sample_snackbar,
                     Snackbar.LENGTH_LONG)
                     .setAction(R.string.text_action, this).show();
